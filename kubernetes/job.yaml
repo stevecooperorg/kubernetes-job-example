@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: my-batch-job
+spec:
+  parallelism: 1
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: stevecooperorg/work-queue-processor:latest
+        name: my-job
+        env:
+          - name: JOB_USER
+            valueFrom:
+              secretKeyRef:
+                name: aws-credential-secret
+                key: JOB_USER
+          - name: JOB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: aws-credential-secret
+                key: JOB_PASS
+      restartPolicy: Never
+status: {}

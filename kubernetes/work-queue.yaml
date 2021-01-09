@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: work-queue
+  name: work-queue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: work-queue
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: work-queue
+    spec:
+      containers:
+      - image: rabbitmq:3
+        name: rabbitmq
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: work-queue
+  name: work-queue
+spec:
+  ports:
+  - name: 5672-5672
+    port: 5672
+    protocol: TCP
+    targetPort: 5672
+  selector:
+    app: work-queue
+  type: ClusterIP
+status:
+  loadBalancer: {}
