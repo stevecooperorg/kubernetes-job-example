@@ -1,3 +1,20 @@
+This is an as-yet-non-functional attempt to build a python work processor, using rabbitmq to store the work to be 
+done, and executing as a kubernetes job so that you can load up rabbit, start the job, and things should process 
+across all pods and then termnate when there's no more work to do.
+
+It has several parts
+
+- a loader (`./loader`) which puts "0".."99" into rabbitmq
+- a processor (`./processor`) which should pull items off the queue and call a callback function for each id
+- Dockerfiles
+- Kubernetes manifests (`./kubernetes`) to set up rabbit (work-queue.yaml), to load the IDs (load.yaml) and to 
+  process the items (job.yaml)
+
+The work queue and the loader works; the processor just sorta sits there doing nothing. That's probably my terrible 
+python skills.
+
+
+
 To see this in action;
 
 build the image and push it to a docker repo (see Makefile, docker-push target, for how to push to public docker hub 

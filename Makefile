@@ -1,5 +1,6 @@
 JOB_USER=my-user
 JOB_PASS=my-password
+TS=(shell date '%s')
 PROCESSOR_IMAGE=stevecooperorg/work-queue-processor:latest
 LOADER_IMAGE=stevecooperorg/work-queue-loader:latest
 
@@ -32,5 +33,18 @@ kube-describe-job:
 	kubectl describe job my-batch-job
 	kubectl get pods -l job-name=my-batch-job
 
+kube-rerun-job: docker-push
 kube-rerun-job: kube-delete-job
 kube-rerun-job: kube-run-job
+kube-rerun-job:
+	kubectl get job my-batch-job
+	kubectl get pods -l job-name=my-batch-job
+
+kube-delete-load:
+	kubectl delete -f kubernetes/load.yaml
+
+kube-run-load:
+	kubectl apply -f kubernetes/load.yaml
+
+kube-rerun-load: kube-delete-load
+kube-rerun-load: kube-run-load

@@ -12,7 +12,8 @@ channel = connection.channel()
 channel.queue_declare(queue='ids')
 
 for x in range(100):
-    channel.basic_publish(exchange='',routing_key='ids',body=x)
+    print("loading data:", str(x))
+    channel.basic_publish(exchange='',routing_key='ids',body=str(x))
 
 connection.close()
-print("connected to work queue")
+print("loaded data")

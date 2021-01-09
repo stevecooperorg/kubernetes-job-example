@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: load
+spec:
+  parallelism: 1
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: stevecooperorg/work-queue-loader:latest
+        imagePullPolicy: Always
+        name: my-job
+      restartPolicy: Never
+status: {}

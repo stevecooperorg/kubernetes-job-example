@@ -11,6 +11,7 @@ spec:
     spec:
       containers:
       - image: stevecooperorg/work-queue-processor:latest
+        imagePullPolicy: Always
         name: my-job
         env:
           - name: JOB_USER
