@@ -12,6 +12,11 @@ spec:
       containers:
       - image: stevecooperorg/work-queue-loader:latest
         imagePullPolicy: Always
-        name: my-job
+        name: loader
+        env:
+          - name: WORK_QUEUE_HOST
+            value: "work-queue"
+          - name: WORK_QUEUE_PORT
+            value: "5672
       restartPolicy: Never
 status: {}

@@ -36,9 +36,6 @@ def main():
         do_work(id)
         method_frame, header_frame, id = channel.basic_get('ids')
 
-    channel.start_consuming()
-
-    connection.close()
     print("processed all work")
 
 main()

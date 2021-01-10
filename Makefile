@@ -7,7 +7,7 @@ LOADER_IMAGE=stevecooperorg/work-queue-loader:latest
 all: docker-build
 
 docker-start-rabbit:
-	docker run -p 5672:5672 -d --hostname work-queue --name work-queue rabbitmq:3
+	docker run --rm -p 5672:5672 -d --hostname work-queue --name work-queue rabbitmq:3
 
 docker-build:
 	docker build loader -t $(LOADER_IMAGE)
@@ -20,7 +20,7 @@ process:
 	export JOB_USER=$(JOB_USER) && export JOB_PASS=$(JOB_PASS) && export WORK_QUEUE_HOST=localhost && python processor/src/main.py
 
 load:
-	export JOB_USER=$(JOB_USER) && export JOB_PASS=$(JOB_PASS) && export WORK_QUEUE_HOST=localhost && python loader/src/main.py
+	export WORK_QUEUE_HOST=localhost && python loader/src/main.py
 
 docker-push: docker-build
 	docker push $(PROCESSOR_IMAGE)
