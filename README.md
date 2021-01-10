@@ -144,19 +144,19 @@ $ kubectl create secret generic aws-credential-secret \
   --from-literal=JOB_PASS=my-pass 
 ```
 
-10. if you're re-running, delete any old jobs running in the cluster;
+8. if you're re-running, delete any old jobs running in the cluster;
 
 ```
 kubectl delete job --all
 ```
 
-10. run the loader
+9. run the loader
 
 ```
 $ kubectl apply -f kubernetes/loader-job.yaml
 ```
 
-11. check the loader worked by looking at the logs of the run;
+10. check the loader worked by looking at the logs of the run;
 
 ```
 $ k get pod -l job-name=load
@@ -175,7 +175,7 @@ loaded data
 
 ```
 
-8. Modify `./kubernetes/processor-job.yaml` to fill in any extra details like docker image or degree of parallelism.
+11. Modify `./kubernetes/processor-job.yaml` to fill in any extra details like docker image or degree of parallelism.
 
 12. now run the processor!
 
@@ -183,13 +183,13 @@ loaded data
 $ kubectl apply -f kubernetes/processor-job.yaml
 ```
 
-11. see the status of the processor job itself;
+13. see the status of the processor job itself;
 
 ```
 $ kubectl describe job process
 ```
 
-12. see the containers being spun up by the job
+14. see the containers being spun up by the job
 
 ```
 $ kubectl get pods -l job-name=process
@@ -202,7 +202,7 @@ process-q2rwv   1/1     Running   0          23s
 process-rjk7w   1/1     Running   0          23s
 ```
 
-13. see the logs of one pod in the batch;
+15. see the logs of one pod in the batch;
 
 ```
 $ kubectl logs process-bb7bs
