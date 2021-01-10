@@ -1,6 +1,8 @@
-This is an as-yet-non-functional attempt to build a python work processor, using rabbitmq to store the work to be 
+This is an attempt to build a python work processor, using rabbitmq to store the work to be 
 done, and executing as a kubernetes job so that you can load up rabbit, start the job, and things should process 
 across all pods and then termnate when there's no more work to do.
+
+![assets/work-queue-processor-architecture.png](assets/work-queue-processor-architecture.png)
 
 It has several parts
 
