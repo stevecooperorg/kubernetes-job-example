@@ -206,4 +206,22 @@ process-rjk7w   1/1     Running   0          23s
 
 ```
 $ kubectl logs process-bb7bs
+
+credentials: my-user my-pass
+connecting to work queue  work-queue 5672
+connected to work queue
+got id b'5'
+acknowledged b'5'
+ [x] Received b'5'
+got id b'8'
+acknowledged b'8'
+ [x] Received b'8'
+...
+got id b'97'
+acknowledged b'97'
+ [x] Received b'97'
+processed all work
+
 ```
+
+Note how each processor instance does around 1/5th of the work because in processorjob.yaml, we've set parallelism to 5.

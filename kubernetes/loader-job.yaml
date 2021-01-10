@@ -17,6 +17,6 @@ spec:
           - name: WORK_QUEUE_HOST
             value: "work-queue"
           - name: WORK_QUEUE_PORT
-            value: "5672
+            value: "5672"
       restartPolicy: Never
 status: {}
